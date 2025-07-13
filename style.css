@@ -1,0 +1,191 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(to right, #6a11cb, #2575fc); /* Modern gradient background */
+    color: #333;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+    text-align: center;
+    width: 90%;
+    max-width: 450px;
+    box-sizing: border-box;
+    animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 25px;
+    font-size: 2.2em;
+    font-weight: 700;
+}
+
+.input-group {
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    color: #555;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+input[type="date"] {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: calc(100% - 24px); /* Adjust for padding */
+    max-width: 300px;
+    box-sizing: border-box;
+    font-size: 1em;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="date"]:focus {
+    border-color: #2575fc;
+    box-shadow: 0 0 8px rgba(37, 117, 252, 0.3);
+    outline: none;
+}
+
+button {
+    background-color: #2575fc; /* Primary button color */
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(37, 117, 252, 0.3);
+}
+
+button:hover {
+    background-color: #1a5bbd;
+    transform: translateY(-2px);
+}
+
+.result {
+    margin-top: 30px;
+    font-size: 1.5em;
+    color: #28a745; /* Success color */
+    font-weight: bold;
+    line-height: 1.6;
+}
+
+#detailedAgeResult {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #e9f7ef; /* Light background for detailed results */
+    border-radius: 10px;
+    border: 1px solid #d4edda;
+    color: #218838;
+    font-size: 1.1em;
+    text-align: left;
+}
+
+#detailedAgeResult p {
+    margin: 8px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#detailedAgeResult span {
+    font-weight: 700;
+    color: #0056b3; /* Highlight numbers */
+    font-size: 1.2em;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+    .container {
+        padding: 25px;
+        width: 95%;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    label {
+        font-size: 1em;
+    }
+
+    input[type="date"] {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+
+    .result {
+        font-size: 1.2em;
+    }
+
+    #detailedAgeResult {
+        font-size: 1em;
+        padding: 10px;
+    }
+}
+
+.summary-table {
+    margin-top: 30px;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #e2e6ea;
+    text-align: left;
+}
+
+.summary-table h2 {
+    color: #17a2b8;
+    margin-bottom: 15px;
+    font-size: 1.8em;
+    text-align: center;
+}
+
+.summary-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.summary-table td {
+    padding: 10px 0;
+    border-bottom: 1px solid #dee2e6;
+    font-size: 1.1em;
+}
+
+.summary-table td:first-child {
+    font-weight: 600;
+    color: #555;
+}
+
+.summary-table td:last-child {
+    text-align: right;
+    font-weight: 700;
+    color: #0056b3;
+}
+
+.summary-table tr:last-child td {
+    border-bottom: none;
+}

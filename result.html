@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Age Result</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .result-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 90%;
+            max-width: 450px;
+            box-sizing: border-box;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .result-container h1 {
+            color: #333;
+            margin-bottom: 25px;
+            font-size: 2.2em;
+            font-weight: 700;
+        }
+
+        .result-container p {
+            font-size: 1.5em;
+            color: #1b5ded;
+            font-weight: bold;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .detailed-result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e9f7ef;
+            border-radius: 10px;
+            border: 1px solid #d4edda;
+            color: #333fe1;
+            font-size: 1.1em;
+            text-align: left;
+        }
+
+        .detailed-result p {
+            margin: 8px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1em; /* Override parent p font-size */
+        }
+
+        .detailed-result span {
+            font-weight: 700;
+            color: #0056b3;
+            font-size: 1.2em;
+        }
+
+        .back-button {
+            background-color: #79ade4;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+            text-decoration: none; /* For anchor tag */
+            display: inline-block;
+        }
+
+        .back-button:hover {
+            background-color: #1272da;
+        }
+
+        /* Mobile responsiveness for result page */
+        @media (max-width: 600px) {
+            .result-container {
+                padding: 25px;
+                width: 95%;
+            }
+
+            .result-container h1 {
+                font-size: 1.8em;
+            }
+
+            .result-container p {
+                font-size: 1.2em;
+            }
+
+            .detailed-result {
+                font-size: 1em;
+                padding: 10px;
+            }
+
+            .back-button {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="result-container">
+        <h1>Your Calculated Age</h1>
+        <p id="ageSummary"></p>
+        <div class="detailed-result">
+            <p>Years: <span id="years"></span></p>
+            <p>Months: <span id="months"></span></p>
+            <p>Days: <span id="days"></span></p>
+            <p>Hours: <span id="hours"></span></p>
+            <p>Minutes: <span id="minutes"></span></p>
+        </div>
+        <a href="age_calculator.html" class="back-button">Calculate Again</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const years = urlParams.get('years');
+            const months = urlParams.get('months');
+            const days = urlParams.get('days');
+            const hours = urlParams.get('hours');
+            const minutes = urlParams.get('minutes');
+
+            document.getElementById('ageSummary').textContent = `You are ${years} years old.`;
+            document.getElementById('years').textContent = years;
+            document.getElementById('months').textContent = months;
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+        });
+    </script>
+</body>
+</html>

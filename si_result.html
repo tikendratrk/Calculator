@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Interest Result</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .result-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 90%;
+            max-width: 450px;
+            box-sizing: border-box;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .result-container h1 {
+            color: #17a2b8; /* Teal for SI */
+            margin-bottom: 25px;
+            font-size: 2.2em;
+            font-weight: 700;
+        }
+
+        .result-container p {
+            font-size: 1.2em; /* Adjusted for detailed results */
+            color: #333;
+            font-weight: normal;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .detailed-result p {
+            margin: 8px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1em; /* Override parent p font-size */
+        }
+
+        .detailed-result span {
+            font-weight: 700;
+            color: #0056b3; /* Highlight numbers */
+            font-size: 1.2em;
+        }
+
+        .back-button {
+            background-color: #7cb4e4; /* Grey for back button */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-button:hover {
+            background-color: #0380df;
+        }
+
+        /* Mobile responsiveness for result page */
+        @media (max-width: 600px) {
+            .result-container {
+                padding: 25px;
+                width: 95%;
+            }
+
+            .result-container h1 {
+                font-size: 1.8em;
+            }
+
+            .result-container p {
+                font-size: 1.2em;
+            }
+
+            .back-button {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="result-container">
+        <h1>Simple Interest Calculation Result</h1>
+        <div class="detailed-result">
+            <p>Simple Interest: <span id="siValue"></span></p>
+            <p>Total Amount: <span id="totalAmount"></span></p>
+            <p>Total Growth Percentage: <span id="totalGrowthPercentage"></span></p>
+            <p>Maturity Date: <span id="maturityDate"></span></p>
+        </div>
+
+        <div class="summary-table">
+            <h2>Summary Table</h2>
+            <table>
+                <tr>
+                    <td>Principal (P):</td>
+                    <td id="summaryPrincipal"></td>
+                </tr>
+                <tr>
+                    <td>Rate (R):</td>
+                    <td id="summaryRate"></td>
+                </tr>
+                <tr>
+                    <td>Time (T):</td>
+                    <td id="summaryTime"></td>
+                </tr>
+                <tr>
+                    <td>Simple Interest (SI):</td>
+                    <td id="summarySi"></td>
+                </tr>
+                <tr>
+                    <td>Total Amount:</td>
+                    <td id="summaryTotal"></td>
+                </tr>
+            </table>
+        </div>
+
+        <a href="si_calculator.html" class="back-button">Calculate Another SI</a>
+        <a href="index.html" class="back-button" style="margin-left: 10px;">Back to Home</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const principal = urlParams.get('principal');
+            const rate = urlParams.get('rate');
+            const time = urlParams.get('time');
+            const simpleInterest = urlParams.get('si');
+            const totalAmount = urlParams.get('total');
+            const totalGrowthPercentage = urlParams.get('growth');
+            const maturityDate = decodeURIComponent(urlParams.get('maturityDate'));
+
+            if (simpleInterest && totalAmount && totalGrowthPercentage && maturityDate && principal && rate && time) {
+                document.getElementById('siValue').textContent = `₹${parseFloat(simpleInterest).toFixed(2)}`;
+                document.getElementById('totalAmount').textContent = `₹${parseFloat(totalAmount).toFixed(2)}`;
+                document.getElementById('totalGrowthPercentage').textContent = `${parseFloat(totalGrowthPercentage).toFixed(2)}%`;
+                document.getElementById('maturityDate').textContent = maturityDate;
+
+                document.getElementById('summaryPrincipal').textContent = `₹${parseFloat(principal).toFixed(2)}`;
+                document.getElementById('summaryRate').textContent = `${parseFloat(rate).toFixed(2)}%`;
+                document.getElementById('summaryTime').textContent = `${parseFloat(time).toFixed(2)} years`;
+                document.getElementById('summarySi').textContent = `₹${parseFloat(simpleInterest).toFixed(2)}`;
+                document.getElementById('summaryTotal').textContent = `₹${parseFloat(totalAmount).toFixed(2)}`;
+
+            } else {
+                document.getElementById('siValue').textContent = 'N/A';
+                document.getElementById('totalAmount').textContent = 'N/A';
+                document.getElementById('totalGrowthPercentage').textContent = 'N/A';
+                document.getElementById('maturityDate').textContent = 'N/A';
+                document.getElementById('summaryPrincipal').textContent = 'N/A';
+                document.getElementById('summaryRate').textContent = 'N/A';
+                document.getElementById('summaryTime').textContent = 'N/A';
+                document.getElementById('summarySi').textContent = 'N/A';
+                document.getElementById('summaryTotal').textContent = 'N/A';
+            }
+        });
+    </script>
+</body>
+</html>

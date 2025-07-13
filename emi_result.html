@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMI Result</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .result-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 90%;
+            max-width: 450px;
+            box-sizing: border-box;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .result-container h1 {
+            color: #28a745; /* Green for EMI */
+            margin-bottom: 25px;
+            font-size: 2.2em;
+            font-weight: 700;
+        }
+
+        .result-container p {
+            font-size: 1.2em; /* Adjusted for detailed results */
+            color: #333;
+            font-weight: normal;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .detailed-result p {
+            margin: 8px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1em; /* Override parent p font-size */
+        }
+
+        .detailed-result span {
+            font-weight: 700;
+            color: #0056b3; /* Highlight numbers */
+            font-size: 1.2em;
+        }
+
+        .back-button {
+            background-color: #78b5ea; /* Grey for back button */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-button:hover {
+            background-color: #1f90e7;
+        }
+
+        /* Mobile responsiveness for result page */
+        @media (max-width: 600px) {
+            .result-container {
+                padding: 25px;
+                width: 95%;
+            }
+
+            .result-container h1 {
+                font-size: 1.8em;
+            }
+
+            .result-container p {
+                font-size: 1.2em;
+            }
+
+            .back-button {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="result-container">
+        <h1>EMI Calculation Result</h1>
+        <div class="detailed-result">
+            <p>Monthly EMI: <span id="emiResult"></span></p>
+            <p>Total Amount Payable: <span id="totalPayable"></span></p>
+            <p>Total Interest Payable: <span id="totalInterest"></span></p>
+            <p>Payoff Date: <span id="payoffDate"></span></p>
+        </div>
+        <div class="chart-container" style="width: 80%; margin: 20px auto;">
+            <canvas id="emiPieChart"></canvas>
+        </div>
+        <a href="emi_calculator.html" class="back-button">Calculate Another EMI</a>
+        <a href="index.html" class="back-button" style="margin-left: 10px;">Back to Home</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const emi = urlParams.get('emi');
+            const totalPayable = urlParams.get('totalPayable');
+            const totalInterest = urlParams.get('totalInterest');
+            const payoffDate = urlParams.get('payoffDate');
+            const loanAmount = urlParams.get('loanAmount');
+
+            if (emi && totalPayable && totalInterest && payoffDate && loanAmount) {
+                document.getElementById('emiResult').textContent = `₹${parseFloat(emi).toFixed(2)}`;
+                document.getElementById('totalPayable').textContent = `₹${parseFloat(totalPayable).toFixed(2)}`;
+                document.getElementById('totalInterest').textContent = `₹${parseFloat(totalInterest).toFixed(2)}`;
+                document.getElementById('payoffDate').textContent = payoffDate;
+
+                const principal = parseFloat(loanAmount);
+                const interest = parseFloat(totalInterest);
+
+                const ctx = document.getElementById('emiPieChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Principal Amount', 'Total Interest'],
+                        datasets: [{
+                            data: [principal, interest],
+                            backgroundColor: ['#28a745', '#007bff'], // Green for Principal, Blue for Interest
+                            hoverOffset: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            title: {
+                                display: true,
+                                text: 'Loan Breakdown (Principal vs. Interest)'
+                            }
+                        }
+                    }
+                });
+
+            } else {
+                document.getElementById('emiResult').textContent = 'N/A';
+                document.getElementById('totalPayable').textContent = 'N/A';
+                document.getElementById('totalInterest').textContent = 'N/A';
+                document.getElementById('payoffDate').textContent = 'N/A';
+            }
+        });
+    </script>
+</body>
+</html>

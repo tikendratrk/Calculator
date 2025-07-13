@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Result</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .result-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 90%;
+            max-width: 450px;
+            box-sizing: border-box;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .result-container h1 {
+            color: #ffc107; /* Amber for BMI */
+            margin-bottom: 25px;
+            font-size: 2.2em;
+            font-weight: 700;
+        }
+
+        .result-container p {
+            font-size: 1.2em; /* Adjusted for detailed results */
+            color: #333;
+            font-weight: normal;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .detailed-result p {
+            margin: 8px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1em; /* Override parent p font-size */
+        }
+
+        .detailed-result span {
+            font-weight: 700;
+            color: #0056b3; /* Highlight numbers */
+            font-size: 1.2em;
+        }
+
+        .health-tip {
+            margin-top: 15px;
+            font-style: italic;
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .back-button {
+            background-color: #94d3ea; /* Grey for back button */
+            color: rgb(0, 0, 0);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-button:hover {
+            background-color: #0ba6e3;
+        }
+
+        /* Mobile responsiveness for result page */
+        @media (max-width: 600px) {
+            .result-container {
+                padding: 25px;
+                width: 95%;
+            }
+
+            .result-container h1 {
+                font-size: 1.8em;
+            }
+
+            .result-container p {
+                font-size: 1.2em;
+            }
+
+            .back-button {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="result-container">
+        <h1>BMI Calculation Result</h1>
+        <div class="detailed-result">
+            <p>Your BMI: <span id="bmiValue"></span></p>
+            <p>Category: <span id="bmiCategory"></span></p>
+            <p id="healthTip" class="health-tip"></p>
+            <p>Recommended Weight Range: <span id="recommendedWeightRange"></span></p>
+            <p>आपकी Height के अनुसार Ideal Weight Range: <span id="idealWeightRange"></span></p>
+            <p>Health Advice (Static Text): <span id="staticHealthAdvice"></span></p>
+            <p>आपकी स्थिति के अनुसार सलाह: <span id="personalizedHealthAdvice"></span></p>
+        </div>
+        <!-- Optional: Visual BMI Graph and Current vs Ideal BMI Comparison -->
+        <div id="bmiGraphContainer" style="margin-top: 20px;">
+            <!-- Placeholder for a simple text-based graph or a more complex visual -->
+            <p>Visual BMI Graph: [Graph Placeholder]</p>
+            <p>Current vs Ideal BMI Comparison: [Comparison Placeholder]</p>
+        </div>
+        <a href="bmi_calculator.html" class="back-button">Calculate Another BMI</a>
+        <a href="index.html" class="back-button" style="margin-left: 10px;">Back to Home</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const bmi = urlParams.get('bmi');
+            const category = urlParams.get('category');
+            const healthTip = urlParams.get('healthTip');
+            const recommendedWeightRange = urlParams.get('recommendedWeightRange');
+            const idealWeightRange = urlParams.get('idealWeightRange');
+            const staticHealthAdvice = urlParams.get('staticHealthAdvice');
+            const personalizedHealthAdvice = urlParams.get('personalizedHealthAdvice');
+
+            if (bmi && category) {
+                document.getElementById('bmiValue').textContent = parseFloat(bmi).toFixed(2);
+                document.getElementById('bmiCategory').textContent = category;
+                if (healthTip) {
+                    document.getElementById('healthTip').textContent = decodeURIComponent(healthTip);
+                }
+                if (recommendedWeightRange) {
+                    document.getElementById('recommendedWeightRange').textContent = decodeURIComponent(recommendedWeightRange);
+                }
+                if (idealWeightRange) {
+                    document.getElementById('idealWeightRange').textContent = decodeURIComponent(idealWeightRange);
+                }
+                if (staticHealthAdvice) {
+                    document.getElementById('staticHealthAdvice').textContent = decodeURIComponent(staticHealthAdvice);
+                }
+                if (personalizedHealthAdvice) {
+                    document.getElementById('personalizedHealthAdvice').textContent = decodeURIComponent(personalizedHealthAdvice);
+                }
+            } else {
+                document.getElementById('bmiValue').textContent = 'N/A';
+                document.getElementById('bmiCategory').textContent = 'N/A';
+                document.getElementById('healthTip').textContent = 'No BMI data found.';
+                document.getElementById('recommendedWeightRange').textContent = 'N/A';
+                document.getElementById('idealWeightRange').textContent = 'N/A';
+                document.getElementById('staticHealthAdvice').textContent = 'N/A';
+                document.getElementById('personalizedHealthAdvice').textContent = 'N/A';
+            }
+        });
+    </script>
+</body>
+</html>

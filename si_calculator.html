@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Interest Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Specific styles for SI Calculator if needed */
+        .container h1 {
+            color: #17a2b8; /* Teal for SI */
+        }
+        .result-si {
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: #17a2b8;
+            font-weight: bold;
+            line-height: 1.6;
+        }
+        .back-button {
+            background-color: #649ac9; /* Grey for back button */
+        }
+        .back-button:hover {
+            background-color: #0b77c8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Simple Interest Calculator</h1>
+        <div class="input-group">
+            <label for="principal">Principal Amount (₹):</label>
+            <input type="number" id="principal" placeholder="e.g., 10000">
+        </div>
+        <div class="input-group">
+            <label for="rate">Annual Interest Rate (%):</label>
+            <input type="number" id="rate" placeholder="e.g., 5">
+        </div>
+        <div class="input-group">
+            <label for="time">Time (Years):</label>
+            <input type="number" id="time" placeholder="e.g., 3">
+        </div>
+        <button id="calculateSiBtn">Calculate Simple Interest</button>
+        <div class="result-si">
+            <p id="siResult"></p>
+        </div>
+        <a href="index.html" class="back-button">Back to Home</a>
+    </div>
+    <script src="si_script.js"></script>
+</body>
+</html>
