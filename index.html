@@ -1,87 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All-in-One Calculator</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        .tool-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .tool-card {
-            background-color: #f0f8ff; /* Light blue background */
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-decoration: none;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .tool-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .tool-card h2 {
-            margin-top: 0;
-            color: #2575fc; /* Primary color */
-            font-size: 1.8em;
-            margin-bottom: 15px;
-        }
-
-        .tool-card p {
-            font-size: 1.1em;
-            color: #555;
-        }
-
-        /* Adjust container for home page */
-        .container {
-            max-width: 900px;
-            padding: 40px;
-        }
-
-        @media (max-width: 600px) {
-            .tool-grid {
-                grid-template-columns: 1fr;
-            }
-            .container {
-                padding: 25px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2702088683156670" crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2702088683156670" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accounting App</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #e0e7ff, #e9d5ff);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hidden { display: none; }
+    .container {
+      background: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+    h1 {
+      text-align: center;
+      color: #4f46e5;
+      margin-bottom: 1.5rem;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #333;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border-radius: 0.5rem;
+      border: 1px solid #ccc;
+    }
+    button {
+      width: 100%;
+      padding: 0.75rem;
+      background: #4f46e5;
+      color: white;
+      border: none;
+      border-radius: 2rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #4338ca;
+    }
+    .result {
+      background: #eef2ff;
+      color: #4f46e5;
+      font-weight: bold;
+      text-align: center;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      margin-top: 1rem;
+    }
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 1rem;
+      color: #4f46e5;
+      text-decoration: underline;
+      font-size: 0.875rem;
+      cursor: pointer;
+    }
+    .home-buttons button {
+      margin: 0.5rem;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>All-in-One Calculator Tools</h1>
-        <div class="tool-grid">
-            <a href="age_calculator.html" class="tool-card">
-                <h2>Age Calculator</h2>
-                <p>Calculate your exact age in years, months, days, hours, and minutes.</p>
-            </a>
-            <a href="emi_calculator.html" class="tool-card">
-                <h2>EMI Calculator</h2>
-                <p>Calculate your Equated Monthly Installments for loans.</p>
-            </a>
-            <a href="bmi_calculator.html" class="tool-card">
-                <h2>BMI Calculator</h2>
-                <p>Determine your Body Mass Index and assess your weight status.</p>
-            </a>
-            <a href="si_calculator.html" class="tool-card">
-                <h2>Simple Interest Calculator</h2>
-                <p>Calculate the simple interest on a principal amount.</p>
-            </a>
-        </div>
+
+  <div id="homePage" class="container text-center">
+    <h1>Accounting App</h1>
+    <div class="home-buttons">
+      <button onclick="showPage('pvPage')">1. P/V Ratio</button>
+      <button onclick="showPage('bepPage')">2. BEP Calculation</button>
+      <button onclick="showPage('mosPage')">3. Margin of Safety</button>
     </div>
+  </div>
+
+  <!-- BEP Page -->
+  <div id="bepPage" class="container hidden">
+    <h1>Break Even Point Calculator</h1>
+    <label>Fixed Cost (₹)</label>
+    <input id="fixedCost" type="number" />
+    <label>Selling Price per Unit (₹)</label>
+    <input id="price" type="number" />
+    <label>Variable Cost per Unit (₹)</label>
+    <input id="vcostPerUnit" type="number" />
+    <button onclick="calculateBEP()">Calculate</button>
+    <div id="bepResult" class="result hidden">BEP (Units): <span id="bepValue"></span></div>
+    <span class="back-link" onclick="goHome('bepPage')">Back to Home</span>
+  </div>
+
+  <!-- Margin of Safety Page -->
+  <div id="mosPage" class="container hidden">
+    <h1>Margin of Safety Calculator</h1>
+    <label>Actual Sales (₹)</label>
+    <input id="actualSales" type="number" />
+    <label>Break Even Sales (₹)</label>
+    <input id="breakEvenSales" type="number" />
+    <button onclick="calculateMOS()">Calculate</button>
+    <div id="mosResult" class="result hidden">Margin of Safety: ₹<span id="mosValue"></span></div>
+    <span class="back-link" onclick="goHome('mosPage')">Back to Home</span>
+  </div>
+
+  <!-- P/V Ratio Page -->
+  <div id="pvPage" class="container hidden">
+    <h1>P/V Ratio Calculator</h1>
+    <label>Sales (₹)</label>
+    <input id="pvSales" type="number" />
+    <label>Variable Cost (₹)</label>
+    <input id="pvVariableCost" type="number" />
+    <button onclick="calculatePV()">Calculate</button>
+    <div id="pvResult" class="result hidden">P/V Ratio: <span id="pvValue"></span>%</div>
+    <span class="back-link" onclick="goHome('pvPage')">Back to Home</span>
+  </div>
+
+  <script>
+    function showPage(id) {
+      document.getElementById('homePage').classList.add('hidden');
+      document.getElementById(id).classList.remove('hidden');
+    }
+
+    function goHome(currentPageId) {
+      document.getElementById(currentPageId).classList.add('hidden');
+      document.getElementById('homePage').classList.remove('hidden');
+    }
+
+    function calculateBEP() {
+      const fc = parseFloat(document.getElementById('fixedCost').value);
+      const price = parseFloat(document.getElementById('price').value);
+      const vc = parseFloat(document.getElementById('vcostPerUnit').value);
+      const resultBox = document.getElementById('bepResult');
+      const valueBox = document.getElementById('bepValue');
+
+      if (isNaN(fc) || isNaN(price) || isNaN(vc) || price <= vc) {
+        valueBox.textContent = 'Invalid input';
+      } else {
+        const bep = fc / (price - vc);
+        valueBox.textContent = bep.toFixed(2);
+      }
+      resultBox.classList.remove('hidden');
+    }
+
+    function calculateMOS() {
+      const actual = parseFloat(document.getElementById('actualSales').value);
+      const breakeven = parseFloat(document.getElementById('breakEvenSales').value);
+      const resultBox = document.getElementById('mosResult');
+      const valueBox = document.getElementById('mosValue');
+
+      if (isNaN(actual) || isNaN(breakeven) || actual < breakeven) {
+        valueBox.textContent = 'Invalid input';
+      } else {
+        const mos = actual - breakeven;
+        valueBox.textContent = mos.toFixed(2);
+      }
+      resultBox.classList.remove('hidden');
+    }
+
+    function calculatePV() {
+      const sales = parseFloat(document.getElementById('pvSales').value);
+      const vcost = parseFloat(document.getElementById('pvVariableCost').value);
+      const resultBox = document.getElementById('pvResult');
+      const valueBox = document.getElementById('pvValue');
+
+      if (isNaN(sales) || isNaN(vcost) || sales <= 0 || vcost < 0 || vcost > sales) {
+        valueBox.textContent = 'Invalid input';
+      } else {
+        const ratio = ((sales - vcost) / sales) * 100;
+        valueBox.textContent = ratio.toFixed(2);
+      }
+      resultBox.classList.remove('hidden');
+    }
+  </script>
 </body>
 </html>
